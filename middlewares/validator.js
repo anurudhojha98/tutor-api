@@ -1,8 +1,7 @@
 const { check, validationResult } = require('express-validator');
-const message=require('../common/message');
-const constants=require('../common/constants')
+const message = require('../common/message');
+const constants = require('../common/constants')
 const userSignUpValidation = () => {
-    console.log('-----validation check-----')
     return [
         check(constants.USERNAME, message.USER_NAME_REQUIRED).exists().isLength({ min: 3 }),
         check(constants.EMAIL, message.EMAIL_REQUIRED).exists().isEmail().withMessage(message.INVALID_EMAIL),
@@ -12,7 +11,7 @@ const userSignUpValidation = () => {
 }
 const userLoginValidation = () => {
     return [
-        check(constants.EMAIL, message.EMAIL_REQUIRED).exists().isEmail().withMessage(message.INVALID_EMAIL),
+        check(constants.USERNAME, message.USER_NAME_REQUIRED).exists().isLength({ min: 3 }),
         check(constants.PASSWORD, message.PASSWORD_REQUIRED).exists().isLength({ min: 8 }).withMessage(message.PASSWORD_MORE_CHAR),
     ]
 }
@@ -29,7 +28,7 @@ const validate = (req, res, next) => {
         errors: extractedErrors,
     })
 }
-module.exports={
+module.exports = {
     validate,
     userSignUpValidation,
     userLoginValidation

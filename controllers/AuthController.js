@@ -1,3 +1,4 @@
+const message = require('../common/message');
 const authService = require('../services/authService')
 module.exports = {
 
@@ -8,7 +9,7 @@ module.exports = {
                 return res.status(201).json(
                     {
                         success: true,
-                        res: user
+                        message: message.USER_SIGNUP_SUCCESS
                     }
                 );
             }).catch((err) => {
@@ -36,7 +37,7 @@ module.exports = {
                 return res.status(200).json(
                     {
                         success: true,
-                        res: user
+                        token: user.token
                     }
                 );
             }).catch((err) => {

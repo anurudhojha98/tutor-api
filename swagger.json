@@ -2,10 +2,10 @@
     "swagger": "2.0",
     "info": {
         "version": "1.0.0",
-        "title": "Algoscale Test Application",
+        "title": "Tutor Bin Test Application",
         "description": " Test Application API"
     },
-    "host": "localhost:3000",
+    "host": "localhost:3200",
     "basePath": "/api",
     "schemes": [
         "http"

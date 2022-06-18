@@ -13,6 +13,7 @@ const cors = require('cors');
 
 
 var corsOptions = {
+    // we can add only allowed origins
     origin: '*',
     optionsSuccessStatus: 200
 }
@@ -21,6 +22,7 @@ app.use(cors(corsOptions));
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
+// we can add these details on configs
 mongoose.connect('mongodb://10.25.61.243:27017/tutor_bin', { useNewUrlParser: true });
 
 var db = mongoose.connection;
@@ -31,9 +33,10 @@ db.once('open', function () {
 
 /* All routes will be added there */
 
-require('./routes/authRoutes')(app,router);
-require('./routes/userRoutes')(app,router);
-
+require('./routes/authRoutes')(router);
+require('./routes/userRoutes')(router);
+require('./routes/todoRoutes')(router);
+app.use('/api', router)
 
 var options = {
     customCss: '.swagger-ui .topbar { display: none }'
